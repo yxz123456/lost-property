@@ -19,7 +19,7 @@
                 <div class="imgs" v-if='imgs.length'>
                     <div class="img-control"  v-for='(src,index) of srcs' :key='index'>
                         <span class="iconfont" @click="onDelImg(index)">&#xe635;</span>
-                        <img :src="service+src"  @click='onImgPreview(srcs,index)'/>
+                        <div :style="{backgroundImage:'url('+service+src+')'}" @click='onImgPreview(srcs,index)'></div>
                     </div>
                 </div>
 
@@ -153,14 +153,14 @@ export default {
                     console.log('name', res.name)
                     this.place = res.name
                 }
-            })    
+            })
         },
         onDelImg (index) {
             console.log('del')
             let urls = []
             this.srcs.forEach((img, i) => {
                 if (i != index) {
-                    urls.push(img)                    
+                    urls.push(img)
                 }
             })
             this.srcs = urls
@@ -324,10 +324,14 @@ textarea {
 }
 
 
-.imgs img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10rpx;
+.imgs div{
+  width: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+  border-radius: 10rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 25% 40%;
 }
 
 .btn-submit {

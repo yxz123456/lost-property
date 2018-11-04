@@ -19,7 +19,7 @@
         </p>
         <div class="display">
             <div class="img-container" v-for='(src, index) of srcs' :key='index'>
-                <img mode='scaleToFill' :src="src" @click='onImgPreview(srcs,index)'   />
+              <div mode='scaleToFill' :style="{backgroundImage:'url('+src+')'}"  @click='onImgPreview(srcs,index)'></div>
             </div>
         </div>
     </div>
@@ -130,9 +130,16 @@ export default {
     margin-top: .2rem;
 }
 
-.img-container img {
-    width: 100%;
-    height: 100%;
+.img-container div{
+  width: 210rpx;
+  height: 210rpx;
+  overflow: hidden;
+  margin-right: 16rpx;
+  border-radius: .05rem;
+  margin-top: .2rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 25% 40%;
 }
 
 .middle img {
